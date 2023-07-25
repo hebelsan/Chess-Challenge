@@ -21,52 +21,52 @@ public class MyBot : IChessBot
         return moves[rnd.Next(moves.Length - 1)];
     }
 
-    private int miniMax(Board board, int depth, bool maximizePlayer, int alpha, int beta) {
-        if (depth == 0 || board.IsInCheckmate()) {
-            return evaluate(board);
-        }
+    // private int miniMax(Board board, int depth, bool maximizePlayer, int alpha, int beta) {
+    //     if (depth == 0 || board.IsInCheckmate()) {
+    //         return evaluate(board);
+    //     }
 
-        Move[] moves = board.GetLegalMoves();
+    //     Move[] moves = board.GetLegalMoves();
 
-        if (maximizePlayer)
-        {
-            int bestScore = int.MinValue;
+    //     if (maximizePlayer)
+    //     {
+    //         int bestScore = int.MinValue;
 
-            foreach (Move move in moves)
-            {
-                board.MakeMove(move);
-                int score = MiniMax(board, depth - 1, false, alpha, beta);
-                board.UndoMove();
+    //         foreach (Move move in moves)
+    //         {
+    //             board.MakeMove(move);
+    //             int score = MiniMax(board, depth - 1, false, alpha, beta);
+    //             board.UndoMove();
 
-                bestScore = Math.Max(bestScore, score);
-                alpha = Math.Max(alpha, score);
+    //             bestScore = Math.Max(bestScore, score);
+    //             alpha = Math.Max(alpha, score);
 
-                if (beta <= alpha)
-                    break;
-            }
+    //             if (beta <= alpha)
+    //                 break;
+    //         }
 
-            return bestScore;
-        }
-        else
-        {
-            int bestScore = POSITIVE_INFINITY;
+    //         return bestScore;
+    //     }
+    //     else
+    //     {
+    //         int bestScore = POSITIVE_INFINITY;
 
-            foreach (Move move in moves)
-            {
-                board.MakeMove(move);
-                int score = MiniMax(board, depth - 1, true, alpha, beta);
-                board.UndoMove();
+    //         foreach (Move move in moves)
+    //         {
+    //             board.MakeMove(move);
+    //             int score = MiniMax(board, depth - 1, true, alpha, beta);
+    //             board.UndoMove();
 
-                bestScore = Math.Min(bestScore, score);
-                beta = Math.Min(beta, score);
+    //             bestScore = Math.Min(bestScore, score);
+    //             beta = Math.Min(beta, score);
 
-                if (beta <= alpha)
-                    break;
-            }
+    //             if (beta <= alpha)
+    //                 break;
+    //         }
 
-            return bestScore;
-        }
-    }
+    //         return bestScore;
+    //     }
+    // }
 
     private int evaluate(Board board) {
 
